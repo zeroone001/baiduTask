@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #radio{
+            display: none;
+        }
+        #radio+label{
+            display:inline-block;
+            width: 16px;
+            height:16px;
+            background: url("origin.png") -24px -10px no-repeat;
+        }
+        #radio:checked+label{
+            display:inline-block;
+            width: 16px;
+            height:16px;
+            background: url("origin.png") -59px -10px no-repeat;
+        }
+        #checkbox{
+            display: none;
+        }
+        #checkbox+label{
+            display:inline-block;
+            width: 14px;
+            height:14px;
+            background: url("origin.png") -25px -33px no-repeat;
+        }
+        #checkbox:checked+label{
+            display:inline-block;
+            width: 14px;
+            height:14px;
+            background: url("origin.png") -60px -32px no-repeat;
+        }
+        #radio2{
+            visibility: hidden;
+        }
+        #radio2:after{
+            content: url(unchecked1.png);
+            visibility: visible;
+        }
+        #radio2:checked:after{
+            content: url(checked1.png);
+            visibility: visible;
+        }
+        #checkbox2{
+            visibility: hidden;
+        }
+        #checkbox2:after{
+            content: url(uncheck2.png);
+            visibility: visible;
+        }
+        #checkbox2:checked:after{
+            content: url(checked2.png);
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<input type="radio" id="radio"><label for="radio"></label>
+<br>
+<input type="checkbox" id="checkbox"><label for="checkbox"></label>
+<br>
+<input type="radio" id="radio2">
+<br>
+<input type="checkbox" id="checkbox2">
+</body>
+</html>

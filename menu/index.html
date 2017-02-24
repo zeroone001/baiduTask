@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p{
+            margin:0;
+        }
+        .click-div{
+            width:1000px;
+            height:120px;
+            text-indent:42px;
+            line-height:120px;
+            font-size:20px;
+            border:1px solid #d9d9d9;
+            border-radius: 5px;
+            background-color:#f2f2f2;
+        }
+        #menu{
+            display: none;
+            height:140px;
+            width:400px;
+            border:1px solid #d9d9d9;
+            border-radius: 5px;
+            background: #fff;
+        }
+        #menu p{
+            height:70px;
+            line-height:70px;
+            font-size:25px;
+            text-indent:53px;
+        }
+    </style>
+</head>
+<body>
+<div class="click-div" oncontextmenu="showMenu()">
+    <span>right click to see me</span>
+</div>
+<div id="menu">
+    <p>
+        Menu item 1
+    </p>
+    <p>
+        Menu item 2
+    </p>
+</div>
+<script>
+    window.oncontextmenu=function () {
+        return false;
+    };
+
+    var showMenu=function (ev) {
+        var mEvent=ev||event;
+        console.log(mEvent);
+        console.log(window.innerWidth);
+        var menu = document.getElementById("menu");
+        if(mEvent.clientX+400<window.innerWidth) {
+            menu.style.left = mEvent.clientX + 'px';
+//            menu.style.top = mEvent.clientY + 'px';
+        }else{
+            menu.style.left = mEvent.clientX-400+'px';
+        }
+        if(mEvent.clientY+140<window.innerHeight){
+            menu.style.top=mEvent.clientY + 'px';
+        }else{
+            menu.style.top=mEvent.clientY-140+'px'
+        }
+        menu.style.display = "block";
+        menu.style.position = "absolute";
+    };
+    window.onclick=function () {
+        var menu=document.getElementById("menu");
+        menu.style.display="none";
+    }
+</script>
+</body>
+</html>

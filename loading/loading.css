@@ -1,0 +1,37 @@
+@keyframes spin {
+    0%   { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+@keyframes left {
+    0%        { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+@keyframes right {
+    0%        { opacity: 0; }
+    50%, 100% { opacity: 1; }
+}
+body{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+.ring{
+    position: absolute;  top:0;  bottom:0;  left:0;  right:0;  margin:auto;
+    overflow: hidden;  width: 80px;  height: 80px;  border:2px solid #fe3893;
+    border-left:2px solid transparent;  border-radius: 50%;
+    animation: spin 800ms linear infinite;
+}
+.circle, .circle2 { position: absolute;
+    left:0;  right:0;  top:0;  bottom:0;  margin:auto;
+    width: 48px; height: 48px; border-radius:50%; overflow: hidden;}
+.circle { opacity: 1; background-color: #fb8bbd; animation: left 1.6s steps(1, end) infinite; }
+.circle2 { opacity: 0; background-color: #fe3893; animation: right 1.6s steps(1, end) infinite; }
+.spinner, .left, .right { position: absolute; width: 50%; height: 100%; }
+.spinner { border-radius: 40px 0 0 40px; background-color: #fe3893; transform-origin: right center; animation: spin 800ms infinite linear; left: 0; top: 0; }
+.left { border-radius: 0 40px 40px 0; background-color: #fe3893; animation: left 800ms steps(1, end) infinite; left: 50%; top: 0; opacity: 1; }
+.right { border-radius: 40px 0 0 40px; background-color: #fb8bbd; animation: right 800ms steps(1, end) infinite; left: 0; top: 0; opacity: 0; }
+
+.circle2 .spinner, .circle2 .left { background-color: #fb8bbd; }
+.circle2 .right { background-color: #fe3893; }
+
+

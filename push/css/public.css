@@ -3,7 +3,9 @@
   margin: 0; }
 
 body {
-  background-color: #eee; }
+  background-color: #eee;
+  height:100%;
+}
 
 .box {
   position: absolute;
@@ -51,28 +53,28 @@ body {
   position: absolute;
 }
 #btn1{
-  top:680px;
+  top:80%;
   left:0;
   right:0;
   margin:auto;
 }
 
 #btn2{
-  top:740px;
+  top:85%;
   left:0;
   right:0;
   margin:auto;
 }
 
 #btn3{
-  top:740px;
+  top:85%;
   left:0;
   right:120px;
   margin:auto;
 }
 
 #btn4{
-  top:740px;
+  top:85%;
   left:120px;
   right:0;
   margin:auto;

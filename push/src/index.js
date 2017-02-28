@@ -156,35 +156,14 @@ window.onload=function () {
                  move(1);
              break;
          }
-         if($(".type1.type4").length===goal){
-             if(level<9) {
-                 alert("过关了");
-                 level++;
-                 goal = goalList[level];
-                 position = origin[level];
-                 create(level);
-             }else {
-                 alert("通关了")
-             }
-
-         }
+        win();
      });
 
-        $("#btn1").click(function () {
-            move(-col);
-            if($(".type1.type4").length===goal){
-                if(level<9) {
-                    alert("过关了");
-                    level++;
-                    goal = goalList[level];
-                    position = origin[level];
-                    create(level);
-                }else {
-                    alert("通关了")
-                }
+    $("#btn1").click(function () {
+        move(-col);
+        win();
+    });
 
-            }
-        });
     $("#btn2").click(function () {
         move(col);
         win();

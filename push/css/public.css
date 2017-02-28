@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+body {
+  background-color: #eee; }
+
+.box {
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 480px;
+  height: 480px;
+}
+  .box div {
+    width: 40px;
+    height: 40px;
+    float: left;
+    line-height:40px;
+    text-align: center;
+  }
+
+.type1 {
+  opacity: .5;
+}
+
+.type2,.type1{
+  background-color: blue; }
+
+.type3 {
+  background-color: red; }
+
+.type4 {
+  background-color: white; }
+
+.pusher {
+  width: 40px;
+  height: 40px;
+  background: url("../img/pikachu.jpg") blue;
+  background-size: cover;
+ }
+

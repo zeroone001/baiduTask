@@ -104,8 +104,19 @@ window.onload=function () {
             0,3,3,3,3,3,3,3,3,3,3,0
         ]
     ];
+
+    $("#selectLevel").click(function () {
+        level=$("#select").val();
+        goal = goalList[level];
+        position = origin[level];
+        create(level);
+    });
+
     var areas=$("div");
 
+
+
+    // 第一次创建地图
         !function levelFirst() {
             create();
         }();
@@ -146,8 +157,9 @@ window.onload=function () {
                  move(1);
              break;
          }
-         if($(".type1.type4").length==goal){
+         if($(".type1.type4").length===goal){
              if(level<9) {
+                 alert("过关了");
                  level++;
                  goal = goalList[level];
                  position = origin[level];

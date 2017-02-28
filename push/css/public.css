@@ -43,4 +43,38 @@ body {
   background: url("../img/pikachu.jpg") blue;
   background-size: cover;
  }
+#btn1,#btn2,#btn3,#btn4{
+  width:60px;
+  height:40px;
+  line-height:40px;
+  text-align: center;
+  position: absolute;
+}
+#btn1{
+  top:680px;
+  left:0;
+  right:0;
+  margin:auto;
+}
+
+#btn2{
+  top:740px;
+  left:0;
+  right:0;
+  margin:auto;
+}
+
+#btn3{
+  top:740px;
+  left:0;
+  right:120px;
+  margin:auto;
+}
+
+#btn4{
+  top:740px;
+  left:120px;
+  right:0;
+  margin:auto;
+}
 

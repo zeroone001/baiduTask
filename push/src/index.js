@@ -136,7 +136,6 @@ window.onload=function () {
             areas.eq(origin[level]).addClass("pusher");
         }
 
-
      $(document).keydown(function (e) {
          var key=e.which;
          switch(key){
@@ -170,6 +169,54 @@ window.onload=function () {
 
          }
      });
+
+        $("#btn1").click(function () {
+            move(-col);
+            if($(".type1.type4").length===goal){
+                if(level<9) {
+                    alert("过关了");
+                    level++;
+                    goal = goalList[level];
+                    position = origin[level];
+                    create(level);
+                }else {
+                    alert("通关了")
+                }
+
+            }
+        });
+    $("#btn2").click(function () {
+        move(col);
+        win();
+    });
+
+    $("#btn3").click(function () {
+        move(-1);
+        win();
+    });
+
+    $("#btn4").click(function () {
+        move(1);
+        win();
+    });
+
+
+
+    function win() {
+        if($(".type1.type4").length===goal){
+            if(level<9) {
+                alert("过关了");
+                level++;
+                goal = goalList[level];
+                position = origin[level];
+                create(level);
+            }else {
+                alert("通关了")
+            }
+
+        }
+    }
+
     function move(step) {
         if ((!areas.eq(position+step).hasClass("type4"))&&(areas.eq(position+step).hasClass("type1")||areas.eq(position+step).hasClass("type2"))){
             areas.eq(position).removeClass("pusher");

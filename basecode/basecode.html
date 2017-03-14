@@ -29,6 +29,10 @@
             var index = number;
             return function () {
                 var newDom;
+                if(typeof inputDom.value !=='number'){
+                    alert("请输入数字");
+                    return;
+                }
                 switch (index) {
                     case 0: {
                         newDom = document.createElement("Li");
@@ -65,7 +69,6 @@
                 btnDoms[i].addEventListener('click', addLi(i))
             })(i)
         }
-        console.log(btnDoms);
     }
 </script>
 </body>

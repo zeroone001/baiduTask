@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basecode</title>
+    <link rel="stylesheet" href="basecode2.css">
+</head>
+<body>
+
+<input type="text" id="multi-input">
+<button class="btn">左侧入</button>
+<button class="btn split">右侧入</button>
+<button class="btn">左侧出</button>
+<button class="btn">右侧出</button>
+<button class="btn split sort-hook">排序</button>
+<ul id="list-hook">
+
+</ul>
+
+<script>
+    window.onload = function () {
+        var inputDom = document.getElementById('multi-input');
+        var btnDoms = document.getElementsByClassName('btn');
+        var ulDom = document.getElementById('list-hook');
+        var liDoms = document.getElementsByTagName('li');
+        var x = 0;
+        var addLi = function (number) {
+            var index = number;
+            return function () {
+                var newDom;
+                var reg = /^[0-9]+$/;
+                if (!reg.test(inputDom.value)) {
+                    alert("请输入数字");
+                    return;
+                } else if (inputDom.value < 10 || inputDom.value > 100) {
+                    alert("请输入10到100的数字");
+                    return
+                } else if (liDoms.length >= 60) {
+                    addLi("最多输入60个数字");
+                }
+                switch (index) {
+                    case 0: {
+                        newDom = document.createElement("Li");
+                        newDom.className += 'list-item';
+                        newDom.style.height = +inputDom.value + 'px';
+                        ulDom.insertBefore(newDom, ulDom.childNodes[0]);
+                        break;
+                    }
+                    case 1: {
+                        newDom = document.createElement("Li");
+                        newDom.className += 'list-item';
+                        newDom.style.height = +inputDom.value + 'px';
+                        ulDom.appendChild(newDom);
+                        break;
+                    }
+                    case 2: {
+                        if (liDoms[0]) {
+                            liDoms[0].remove(liDoms[0]);
+                        }
+                        break;
+                    }
+                    case 3: {
+                        if (liDoms[0]) {
+                            liDoms[liDoms.length - 1].remove(liDoms[liDoms.length - 1]);
+                        }
+                        break;
+                    }
+                }
+            }
+
+        };
+        for (var i = 0; i < btnDoms.length; i++) {
+            (function (i) {
+                btnDoms[i].addEventListener('click', addLi(i))
+            })(i)
+        }
+        document.getElementsByClassName('sort-hook')[0].addEventListener('click', function () {
+
+            for (var i = 0; i < liDoms.length; i++) {
+                for (var j = 0; j < liDoms.length - 1; j++) {
+                    (function (j) {
+                        setTimeout(function () {
+                            if (+liDoms[j].style.height.slice(0, -2) > +liDoms[j + 1].style.height.slice(0, -2)) {
+                                var change;
+                                change = liDoms[j].style.height;
+                                liDoms[j].style.height = liDoms[j + 1].style.height;
+                                liDoms[j + 1].style.height = change;
+                                console.log(x);
+                            }
+                        }, x++ * 500);
+                    })(j);
+                }
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

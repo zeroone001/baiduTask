@@ -27,9 +27,10 @@
         var liDoms = document.getElementsByTagName('li');
         var addLi = function (number) {
             var index = number;
+            var reg=/^[0-9]+$/;
             return function () {
                 var newDom;
-                if(typeof inputDom.value !=='number'){
+                if(!reg.test(inputDom.value)){
                     alert("请输入数字");
                     return;
                 }

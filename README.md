@@ -4,4 +4,4 @@
 * [ECharts折线直方图](https://rennaiqian.github.io/baiduTask/ECharts/ECharts.html)
 * [自定义右键菜单](https://rennaiqian.github.io/baiduTask/menu/index.html)
 * [冒泡排序的可视化](https://rennaiqian.github.io/baiduTask/basecode2/basecode2.html)
-* [自定义checkbox样式](checkbox/checkbox.html)
+* [自定义checkbox样式](https://rennaiqian.github.io/checkbox/checkbox.html)

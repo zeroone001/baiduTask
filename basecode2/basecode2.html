@@ -78,7 +78,6 @@
             })(i)
         }
         document.getElementsByClassName('sort-hook')[0].addEventListener('click', function () {
-
             for (var i = 0; i < liDoms.length; i++) {
                 for (var j = 0; j < liDoms.length - 1; j++) {
                     (function (j) {
@@ -89,7 +88,7 @@
                                 liDoms[j].style.height = liDoms[j + 1].style.height;
                                 liDoms[j + 1].style.height = change;
                             }
-                        }, x++ * 500);
+                        }, x++ * 200);
                     })(j);
                 }
             }

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basecode</title>
+    <link rel="stylesheet" href="basecode3.css">
+</head>
+<body>
+
+<textarea name="search" id="multi-input" cols="30" rows="10" placeholder="请输入中文、英文、数字，用其他字符隔开"></textarea>
+<button class="btn">输入</button>
+<button class="btn">搜索</button>
+<ul id="list-hook">
+
+</ul>
+
+<script>
+    window.onload = function () {
+        var inputDom = document.getElementById('multi-input');
+        var btnDoms = document.getElementsByClassName('btn');
+        var ulDom = document.getElementById('list-hook');
+        var liDoms = document.getElementsByTagName('li');
+        var inputText = [];
+        var writeIn = function () {
+            var inputText = inputDom.value.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/);
+            for (var i = 0; i < inputText.length; i++) {
+                var liDom = document.createElement('li');
+                liDom.setAttribute("class", 'list-item');
+                liDom.innerHTML = inputText[i];
+                ulDom.appendChild(liDom);
+            }
+        };
+        var search = function () {
+            var reg = new RegExp(inputDom.value);
+            var list = [];
+
+            for (var i = 0; i < liDoms.length; i++) {
+                 if(result=reg.exec(liDoms[i].innerText)){
+                     liDoms[i].style.color="#F01414";
+                     reg.lastIndex=0;
+                 }
+
+            }
+        };
+        btnDoms[0].addEventListener('click', writeIn);
+
+        btnDoms[1].addEventListener('click', search);
+
+    }
+</script>
+</body>
+</html>

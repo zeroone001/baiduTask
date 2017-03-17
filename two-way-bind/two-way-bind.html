@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>双向绑定任务一</title>
 </head>
 <body>
 
@@ -10,20 +10,23 @@
 <script>
     function Observer(obj) {
         this.data = {};
-        let that=this;
+        let that = this;
         for (key in obj) {
-            (function(key){Object.defineProperty(that.data, key, {
-                get: function () {
-                    return console.log("你访问了"+key);
-                },
-                set: function (value) {
-                    obj[key] = value;
-                    return console.log("你设置了"+key+"新的值为"+value);
-                }
-            });
-        })(key)
+            convert(key,that);
         }
     }
+    var convert = function (key ,that) {
+        Object.defineProperty(that.data, key, {
+            get: function () {
+                return console.log("你访问了" + key);
+            },
+            set: function (value) {
+                obj[key] = value;
+                return console.log("你设置了" + key + "新的值为" + value);
+            }
+        });
+    };
+
 
     let app1 = new Observer({
         name: 'youngwind',

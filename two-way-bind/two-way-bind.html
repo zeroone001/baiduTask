@@ -12,7 +12,9 @@
         this.data = {};
         let that = this;
         for (let key in obj) {
-            convert(key, that, obj);
+            if(obj.hasOwnProperty(key)) {
+                convert(key, that, obj);
+            }
         }
     }
     let convert = function (key, that, obj) {

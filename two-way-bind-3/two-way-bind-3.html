@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定任务二</title>
+</head>
+<body>
+
+
+<script>
+    _obj = {};
+    let Observer = function (obj, key) {
+        if (!key) {
+            let that = this;
+            that.data = {};
+            walk(obj, that.data)
+        } else {
+            let that = this;
+            delete that[key];
+            this[key] = {};
+            walk(obj, that[key]);
+        }
+    };
+    Observer.prototype.$watch = function (key, fun) {
+        let _fun;
+        if (fun) {
+            _fun = fun;
+        }
+        _obj[key] = _fun;
+    };
+    function walk(obj, data) {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (typeof obj[key] !== "object") {
+                    let _value = obj[key];
+                    Object.defineProperty(data, key, {
+                        get: function () {
+                            console.log("你访问了" + key);
+                            return _value;
+                        },
+                        set: function (value) {
+                            if (typeof value === "object") {
+                                Observer.call(data, value, key);
+                            }
+                            else {
+                                _value = value;
+                                console.log("你设置了" + key + "新的值为" + _value);
+                                if (typeof _obj[key] === "function") {
+                                    _obj[key](_value);
+                                }
+                            }
+                        },
+                        configurable: true
+                    });
+                } else {
+                    data[key] = {};
+                    walk(obj[key], data[key])
+                }
+            }
+        }
+    }
+    let app1 = new Observer({
+        name: 'youngwind',
+        age: 25
+    });
+    app1.data.name = {
+        lastName: 'liang',
+        firstName: 'shaofeng'
+    };
+</script>
+</body>
+</html>

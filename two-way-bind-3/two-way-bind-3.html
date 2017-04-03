@@ -6,7 +6,7 @@
 </head>
 <body>
 <script>
-    _obj = {};
+    let _obj = {};
     let Observer = function (obj, key) {
         if (!key) {
             let that = this;
@@ -33,7 +33,7 @@
                     let _value = obj[key];
                     Object.defineProperty(data, key, {
                         get: function () {
-                            console.log("你访问了" + key);
+                            console.log(`你访问了${key}`);
                             return _value;
                         },
                         set: function (value) {
@@ -42,28 +42,25 @@
                             }
                             else {
                                 _value = value;
-                                console.log("你设置了" + key + "新的值为" + _value);
-                                if (typeof _obj[key] === "function") {
-                                    _obj[key](_value);
-                                }
+                                console.log(`你设置了${key},新的值为${_value}`);
                             }
                         },
                         configurable: true
                     });
                 } else {
                     data[key] = {};
-                    walk(obj[key], data[key])
+                    walk(obj[key], data[key]);
                 }
             }
         }
     }
     let app1 = new Observer({
-        name: 'youngwind',
+        name: 'Edward',
         age: 25
     });
     app1.data.name = {
-        lastName: 'ren',
-        firstName: 'naiqian'
+        lastName: 'Naiqian',
+        firstName: 'Ren'
     };
 </script>
 </body>

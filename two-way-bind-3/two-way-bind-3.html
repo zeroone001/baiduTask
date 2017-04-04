@@ -6,19 +6,22 @@
 </head>
 <body>
 <script>
-    let _obj = {};
-    let Observer = function (obj, key) {
-        if (!key) {
-            let that = this;
-            that.data = {};
-            walk(obj, that.data)
-        } else {
-            let that = this;
-            delete that[key];
-            this[key] = {};
-            walk(obj, that[key]);
-        }
-    };
+    let _obj = {},
+        family = {},
+//        观察者构造函数，将对应的属性绑定在新创建的对象上
+        Observer = function (obj, key) {
+            if (!key) {
+                let that = this;
+                that.data = {};
+                walk(obj, that.data)
+            } else {
+                let that = this;
+                delete that[key];
+                this[key] = {};
+                walk(obj, that[key]);
+            }
+        };
+    //    $watch用来监听对应的属性
     Observer.prototype.$watch = function (key, fun) {
         let _fun;
         if (fun) {
@@ -26,6 +29,7 @@
         }
         _obj[key] = _fun;
     };
+    //    walk用来遍历属性赋值
     function walk(obj, data) {
         for (let key in obj) {
             if (obj.hasOwnProperty(key)) {
@@ -37,12 +41,24 @@
                             return _value;
                         },
                         set: function (value) {
-                            if (typeof value === "object") {
+                            if (value !== null && typeof value === "object") {
+                                delete family[key];
+                                for (let member in value) {
+                                    if (value.hasOwnProperty(member)) {
+                                        family[member] = {"parent": key};
+                                    }
+                                }
                                 Observer.call(data, value, key);
                             }
                             else {
-                                _value = value;
+                                _value=value;
                                 console.log(`你设置了${key},新的值为${_value}`);
+                                _obj[key] && _obj[key]();
+                                let method;
+                                while (family[key] && (method = family[key].parent)) {
+                                    _obj[family[key].parent] && _obj[family[key].parent]();
+                                    key = family[key].parent;
+                                }
                             }
                         },
                         configurable: true
